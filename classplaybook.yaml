@@ -1,0 +1,51 @@
+---
+- name: Example Playbook
+  hosts: all
+  remote_user: ec2-user
+  gather_facts: false
+  tasks:
+    - name: Create a file with touch command
+      command: touch /tmp/file.txt
+
+    - name: Create a file in /tmp with content
+      command: echo -e "1234456\n789101112" > /tmp/file.txt
+
+    - name: Change the second line with your name
+      lineinfile:
+        path: /tmp/file.txt
+        line: "Salokhiddin"
+        insertafter: '^1234456$'
+
+    - name: Install packages using loop
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - httpd
+        - nodejs
+        - mongodb
+      become: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
